@@ -5,15 +5,19 @@ import TodoList from "./components/TodoList";
 
 function App() {
   const [todoItems, setTodoItems] = useState([]);
-  const [editableItemId, setEditableItemId] = useState(``);
-  // console.log(`editedItems`, typeof editableItemId);
+  const [editableItem, setEditableItem] = useState(null);
+  const [istodoEdited, setistodoEdited] = useState(false);
+
+  console.log(`editableItem`, editableItem);
+  console.log(`todoItems`, todoItems);
 
   const handleAdd = (newTodo) => {
     setTodoItems([...todoItems, newTodo]);
   };
 
   const handleDelete = (id) => {
-    let updatedItems = todoItems.filter((item) => item.id !== id);
+    const isItemExists = (item) => item.id !== id;
+    let updatedItems = todoItems.filter(isItemExists);
     setTodoItems(updatedItems);
   };
 
@@ -28,17 +32,24 @@ function App() {
     setTodoItems(updatedItems);
   };
 
-  const handleEdit = (id) => {
-    console.log(`ID`, id);
-    setEditableItemId(id);
+  const handleEdit = (editableItem) => {
+    setEditableItem(editableItem);
+    setistodoEdited(!istodoEdited);
+  };
+
+  const handleFormEdit = (editedTodos) => {
+    setTodoItems([...editedTodos]);
+    setistodoEdited(false);
   };
 
   return (
     <div className="App">
       <TodoForm
         onAdd={handleAdd}
-        editableItemId={editableItemId}
+        onEdit={handleFormEdit}
         todoItems={todoItems}
+        istodoEdited={istodoEdited}
+        editableItem={editableItem}
       />
       <TodoList
         data={todoItems}

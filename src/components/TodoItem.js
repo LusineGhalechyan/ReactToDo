@@ -2,7 +2,7 @@ import React from "react";
 import "./TodoItem.css";
 
 function TodoItem(props) {
-  console.log(`props_ITEM`, props);
+  // console.log(`props_ITEM`, props);
 
   const {
     item: { name },
@@ -22,7 +22,7 @@ function TodoItem(props) {
       />
       <p className={isComplete ? `complete` : ``}>{name}</p>
       <button onClick={() => onDelete(id)}>Delete</button>
-      <button onClick={() => onEdit(id)}>Edit</button>
+      <button onClick={() => onEdit(props.item)}>Edit</button>
     </li>
   );
 }
