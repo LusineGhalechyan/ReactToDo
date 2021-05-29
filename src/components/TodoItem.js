@@ -2,8 +2,6 @@ import React from "react";
 import "./TodoItem.css";
 
 function TodoItem(props) {
-  // console.log(`props_ITEM`, props);
-
   const {
     item: { name },
     item: { id },

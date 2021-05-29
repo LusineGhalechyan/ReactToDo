@@ -5,14 +5,12 @@ function TodoForm(props) {
   const { onAdd, todoItems, istodoEdited, editableItem, onEdit } = props;
 
   const [todoInput, setTodoInput] = useState(``);
-  const [_editableItem, setEditableItem] = useState(editableItem);
-  console.log(`_editableItem`, _editableItem);
-  console.log(`todoInput`, todoInput);
+  const [_editableItem, setEditableItem] = useState(editableItem || {});
 
   useEffect(() => {
     if (istodoEdited) {
-      setTodoInput(editableItem.name);
       setEditableItem(editableItem);
+      setTodoInput(editableItem.name);
     } else {
     }
   }, [istodoEdited]);
@@ -47,7 +45,7 @@ function TodoForm(props) {
         cloneEditableItem["name"] = event.target.value;
         return cloneEditableItem;
       });
-      setTodoInput(_editableItem.name);
+      setTodoInput(event.target.value);
     }
   };
 

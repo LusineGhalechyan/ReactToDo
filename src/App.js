@@ -8,9 +8,6 @@ function App() {
   const [editableItem, setEditableItem] = useState(null);
   const [istodoEdited, setistodoEdited] = useState(false);
 
-  console.log(`editableItem`, editableItem);
-  console.log(`todoItems`, todoItems);
-
   const handleAdd = (newTodo) => {
     setTodoItems([...todoItems, newTodo]);
   };
